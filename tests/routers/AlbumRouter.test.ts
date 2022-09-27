@@ -3,7 +3,7 @@ import { createMock } from "ts-auto-mock";
 import { AlbumRouter } from "../../routers/AlbumRouter";
 import { expect } from "chai";
 import sinon from "sinon";
-import { IAlbumDatabase } from "../../Databases/IAlbumDatabase";
+import { IAlbumDatabase } from "../../databases/IAlbumDatabase";
 
 describe("getInternal", () => {
     it("Returns album from database", async () => {
