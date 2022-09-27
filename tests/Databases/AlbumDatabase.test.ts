@@ -2,7 +2,14 @@ import { expect } from "chai";
 import { Album } from "../../models/album";
 import { AlbumDatabase } from "../../databases/AlbumDatabase";
 
-it("Returns null if no album exists for the album id", async () => {
+const hasConnectionString = process.env.DATABASE_CONNECTION_STRING !== undefined;
+
+if(!hasConnectionString) console.log("Skipping AlbumDatabase tests, no connection string found!");
+
+const It = hasConnectionString ? it : it.skip;
+
+
+It("Returns null if no album exists for the album id", async () => {
     let albumDatabase = new AlbumDatabase();
     
     let album = await albumDatabase.get("Nonexistent Album Id");
@@ -10,7 +17,7 @@ it("Returns null if no album exists for the album id", async () => {
     expect(album).to.be.null;
 });
 
-it("Can save and retrieve album", async () => {
+It("Can save and retrieve album", async () => {
     let album = { albumId: "Album 2" } as Album;
     let albumDatabase = new AlbumDatabase();
     
@@ -22,7 +29,7 @@ it("Can save and retrieve album", async () => {
     await tryCleanupAlbum("Album 2");
 });
 
-it("Saving album overwrites existing album", async () => {
+It("Saving album overwrites existing album", async () => {
     let album1 = { albumId: "Album 3", name: "Album Name" } as Album;
     let album2 = { albumId: "Album 3", name: "Overwritten Name" } as Album;
     let albumDatabase = new AlbumDatabase();
@@ -35,7 +42,7 @@ it("Saving album overwrites existing album", async () => {
     await tryCleanupAlbum("Album 3");
 });
 
-it("Can retrieve all albums", async () => {
+It("Can retrieve all albums", async () => {
     let album1 = { albumId: "Album 4" } as Album;
     let album2 = { albumId: "Album 5" } as Album;
 
@@ -55,7 +62,7 @@ it("Can retrieve all albums", async () => {
     await tryCleanupAlbum("Album 5");
 });
 
-it("Can delete album", async () => {
+It("Can delete album", async () => {
     let album = { albumId: "Album 6" } as Album;
     let albumDatabase = new AlbumDatabase();
     

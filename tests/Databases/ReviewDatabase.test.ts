@@ -1,8 +1,14 @@
 import { expect } from "chai";
 import { ReviewDatabase } from "../../databases/ReviewDatabase";
 
+const hasConnectionString = process.env.DATABASE_CONNECTION_STRING !== undefined;
+
+if(!hasConnectionString) console.log("Skipping ReviewDatabase tests, no connection string found!");
+
+const It = hasConnectionString ? it : it.skip;
+
 describe("save and retrieve", () => {
-    it("Can add a review and retrieve it by albumId", async () => {
+    It("Can add a review and retrieve it by albumId", async () => {
         const reviewToAdd = { reviewId: "Review 1", albumId: "Album 4", rating: 5 };
         const reviewDatabase = new ReviewDatabase();
         
@@ -15,7 +21,7 @@ describe("save and retrieve", () => {
         await tryCleanupReview("Review 1");
     });
 
-    it("Updates a review if the review id already exists", async () => {
+    It("Updates a review if the review id already exists", async () => {
         const review = { reviewId: "Review 2", albumId: "Album 5", rating: 5 };
         const updatedReview = { reviewId: "Review 2", albumId: "Album 5", rating: 4 };
         const reviewDatabase = new ReviewDatabase();
@@ -32,7 +38,7 @@ describe("save and retrieve", () => {
 });
 
 describe("deleting", () => {
-    it("Deletes by review id", async () => {
+    It("Deletes by review id", async () => {
         const review = { reviewId: "Review 3", albumId: "Album 6", rating: 5 };
         const reviewDatabase = new ReviewDatabase();
         
@@ -44,7 +50,7 @@ describe("deleting", () => {
         expect(reviews).to.be.empty;
     });
 
-    it("Deletes all by album id", async () => {
+    It("Deletes all by album id", async () => {
         const review1 = { reviewId: "Review 4", albumId: "Album 7", rating: 5 };
         const review2 = { reviewId: "Review 5", albumId: "Album 7", rating: 5 };
         const reviewDatabase = new ReviewDatabase();

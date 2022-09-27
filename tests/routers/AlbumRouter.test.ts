@@ -5,6 +5,7 @@ import { expect } from "chai";
 import sinon from "sinon";
 import { IAlbumDatabase } from "../../databases/IAlbumDatabase";
 
+
 describe("getInternal", () => {
     it("Returns album from database", async () => {
         const expectedAlbum = new Album();

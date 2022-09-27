@@ -34,7 +34,7 @@ Run `npm run dev` again, and you should see that the console now outputs "Using 
 
 Run the test script `npm test`
 
-**The AlbumDatabase and ReviewDatabase tests will fail if the live database is offline or not configured correctly.**
+**The AlbumDatabase and ReviewDatabase reach out directly to the live database. The tests will be skipped if there is no connection string configured.**
 
 ### 👨‍🚀 Postman
 
