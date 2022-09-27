@@ -1,0 +1,38 @@
+{
+  "name": "imdb-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "node dist/index.js",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
+    "test": "mocha --require ./tsnode.js tests/**/*.test.ts --exit -r dotenv/config"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "mysql2": "^2.3.3",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.3",
+    "@types/express": "^4.17.14",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "^18.7.18",
+    "@types/sinon": "^10.0.13",
+    "@types/uuid": "^8.3.4",
+    "chai": "^4.3.6",
+    "concurrently": "^7.4.0",
+    "mocha": "^10.0.0",
+    "nodemon": "^2.0.20",
+    "sinon": "^14.0.0",
+    "ts-auto-mock": "^3.6.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.3"
+  }
+}
